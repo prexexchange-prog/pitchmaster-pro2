@@ -1,71 +1,95 @@
+import { motion } from "framer-motion";
 import SlideWrapper from "../SlideWrapper";
 import GradientOrb from "../GradientOrb";
-import { motion } from "framer-motion";
-import { Monitor, Smartphone, Layout, Database, Cloud, Lock } from "lucide-react";
+import { MousePointer, Settings, Bell, TrendingUp } from "lucide-react";
+
+const steps = [
+  { step: "01", label: "Kullanıcı İlk Ne Yapıyor?", desc: "Kullanıcı uygulamaya giriş yapar ve ilk adımı atar." },
+  { step: "02", label: "Sonra Ne Oluyor?", desc: "Sistem otomatik devreye girer, veriler işlenir." },
+  { step: "03", label: "Sonra Ne Oluyor?", desc: "Kullanıcıya öneriler veya sonuçlar sunulur." },
+  { step: "04", label: "Son Adım", desc: "Hedef tamamlanır, değer yaratılır." },
+];
 
 const features = [
-  { icon: Layout, label: "Dashboard" },
-  { icon: Database, label: "Veri Yönetimi" },
-  { icon: Cloud, label: "Bulut Altyapı" },
-  { icon: Lock, label: "Güvenlik" },
-  { icon: Smartphone, label: "Mobil Uygulama" },
-  { icon: Monitor, label: "Raporlama" },
+  { icon: MousePointer, name: "Özellik 1", desc: "Ne işe yarıyor?" },
+  { icon: Settings, name: "Özellik 2", desc: "Ne işe yarıyor?" },
+  { icon: Bell, name: "Özellik 3", desc: "Ne işe yarıyor?" },
+  { icon: TrendingUp, name: "Özellik 4", desc: "Ne işe yarıyor?" },
 ];
 
 export default function Slide06Product() {
   return (
     <SlideWrapper>
-      <GradientOrb className="w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" color="primary" />
-      
-      <div className="max-w-5xl w-full z-10">
+      <GradientOrb className="w-[500px] h-[500px] -bottom-20 -right-20" color="accent" />
+
+      <div className="w-full max-w-6xl z-10">
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex items-center gap-3 mb-4"
+          className="mb-3"
         >
-          <Monitor className="w-5 h-5 text-purple-400" />
-          <span className="text-sm font-semibold tracking-widest uppercase text-purple-400">Ürün</span>
+          <span className="text-xs font-bold tracking-widest uppercase text-blue-400/70">Ürün</span>
         </motion.div>
-        
+
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-4xl md:text-5xl font-bold leading-tight mb-12"
+          transition={{ delay: 0.1 }}
+          className="text-5xl md:text-6xl font-black mb-8 leading-tight"
         >
-          Güçlü. <span className="text-muted-foreground/40">Basit. Zarif.</span>
+          Nasıl{" "}
+          <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            çalışıyor?
+          </span>
         </motion.h2>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="relative bg-secondary/50 border border-border/50 rounded-3xl p-8 md:p-12 backdrop-blur-sm"
-        >
-          <div className="bg-background/80 rounded-2xl border border-border/30 p-6 mb-8 h-48 md:h-64 flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500/30 to-blue-500/30 flex items-center justify-center mx-auto mb-4">
-                <Monitor className="w-8 h-8 text-purple-400" />
-              </div>
-              <p className="text-muted-foreground text-sm">Ürün Demo Ekranı</p>
-              <p className="text-muted-foreground/40 text-xs mt-1">Buraya ürün görseli eklenecek</p>
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
-            {features.map((item, i) => (
+        <div className="grid grid-cols-2 gap-6 mb-8">
+          {/* User flow */}
+          <div className="flex flex-col gap-3">
+            {steps.map((s, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 + i * 0.08 }}
-                className="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-background/50 transition-colors"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 + i * 0.1 }}
+                className="flex items-start gap-4 bg-secondary/30 border border-border/30 rounded-xl p-4"
               >
-                <item.icon className="w-5 h-5 text-muted-foreground" />
-                <span className="text-xs text-muted-foreground">{item.label}</span>
+                <span className="text-2xl font-black bg-gradient-to-br from-purple-400 to-blue-400 bg-clip-text text-transparent shrink-0">{s.step}</span>
+                <div>
+                  <div className="text-sm font-semibold text-white/90 mb-0.5">{s.label}</div>
+                  <div className="text-xs text-muted-foreground">{s.desc}</div>
+                </div>
               </motion.div>
             ))}
           </div>
+
+          {/* Features */}
+          <div className="grid grid-cols-2 gap-3">
+            {features.map((f, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3 + i * 0.1 }}
+                className="bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-xl p-5 flex flex-col gap-3 hover:scale-105 transition-transform"
+              >
+                <f.icon className="w-6 h-6 text-purple-400" />
+                <div>
+                  <div className="text-sm font-bold text-white/90">{f.name}</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">{f.desc}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7 }}
+          className="bg-secondary/20 border border-border/30 rounded-xl px-6 py-3 text-sm text-muted-foreground italic"
+        >
+          💡 Ürün ekranları hakkında kısa not: Ürünün nasıl göründüğünü, hangi ekranların öne çıktığını buraya ekleyin.
         </motion.div>
       </div>
     </SlideWrapper>
