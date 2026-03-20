@@ -19,12 +19,12 @@ import Slide11GoToMarket from "../components/pitchdeck/slides/Slide11GoToMarket"
 import Slide12CustomerProfile from "../components/pitchdeck/slides/Slide12CustomerProfile";
 import Slide13Testimonials from "../components/pitchdeck/slides/Slide13Testimonials";
 import Slide14Financials from "../components/pitchdeck/slides/Slide14Financials";
-import Slide15Roadmap from "../components/pitchdeck/slides/Slide15Roadmap";
-import Slide16Team from "../components/pitchdeck/slides/Slide16Team";
-import Slide17Advisors from "../components/pitchdeck/slides/Slide17Advisors";
-import Slide18AskAmount from "../components/pitchdeck/slides/Slide18AskAmount";
-import Slide19UseOfFunds from "../components/pitchdeck/slides/Slide19UseOfFunds";
-import Slide20Closing from "../components/pitchdeck/slides/Slide20Closing";
+import Slide15Roadmap from "../components/pitchdeck/slides/Slide15Roadmap.jsx";
+import Slide16Team from "../components/pitchdeck/slides/Slide16Team.jsx";
+import Slide17Advisors from "../components/pitchdeck/slides/Slide17Advisors.jsx";
+import Slide18AskAmount from "../components/pitchdeck/slides/Slide18AskAmount.jsx";
+import Slide19UseOfFunds from "../components/pitchdeck/slides/Slide19UseOfFunds.jsx";
+import Slide20Closing from "../components/pitchdeck/slides/Slide20Closing.jsx";
 
 const slides = [
   Slide01Cover, Slide02Problem, Slide03Solution, Slide04ValueProp,
