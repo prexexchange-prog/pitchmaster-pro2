@@ -103,9 +103,20 @@ export default function PitchDeck() {
 
   return (
     <div className="h-screen w-screen overflow-hidden bg-background relative">
-      <AnimatePresence mode="wait">
-        <CurrentSlide key={currentSlide} />
-      </AnimatePresence>
+      {/* Export button top-right */}
+      <div className="absolute top-4 right-6 z-50">
+        <ExportPDFButton
+          slides={slides}
+          currentSlide={currentSlide}
+          onGoTo={goTo}
+        />
+      </div>
+
+      <div id="slide-container" className="w-full h-full">
+        <AnimatePresence mode="wait">
+          <CurrentSlide key={currentSlide} />
+        </AnimatePresence>
+      </div>
 
       <SlideNumber current={currentSlide + 1} total={total} />
 
