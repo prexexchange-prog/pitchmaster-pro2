@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import SlideNumber from "../components/pitchdeck/SlideNumber";
 import SlideNavigation from "../components/pitchdeck/SlideNavigation";
 import SlideThumbnails from "../components/pitchdeck/SlideThumbnails";
+import ExportPDFButton from "../components/pitchdeck/ExportPDFButton";
 
 import Slide01Cover from "../components/pitchdeck/slides/Slide01Cover";
 import Slide02Problem from "../components/pitchdeck/slides/Slide02Problem";
