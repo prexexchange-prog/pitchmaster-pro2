@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { Download, Loader2 } from "lucide-react";
-import html2canvas from "html2canvas";
-import { jsPDF } from "jspdf";
 
 export default function ExportPDFButton({ slides, currentSlide, onGoTo }) {
   const [exporting, setExporting] = useState(false);
@@ -10,6 +8,11 @@ export default function ExportPDFButton({ slides, currentSlide, onGoTo }) {
   const handleExport = async () => {
     setExporting(true);
     setProgress(0);
+
+    const [{ default: html2canvas }, { jsPDF }] = await Promise.all([
+      import("html2canvas"),
+      import("jspdf"),
+    ]);
 
     const pdf = new jsPDF({
       orientation: "landscape",
@@ -23,7 +26,6 @@ export default function ExportPDFButton({ slides, currentSlide, onGoTo }) {
       onGoTo(i);
       setProgress(Math.round(((i + 1) / slides.length) * 100));
 
-      // Wait for slide to render
       await new Promise((r) => setTimeout(r, 600));
 
       const canvas = await html2canvas(slideContainer, {
@@ -43,7 +45,6 @@ export default function ExportPDFButton({ slides, currentSlide, onGoTo }) {
 
     pdf.save("pitch-deck.pdf");
 
-    // Restore original slide
     onGoTo(currentSlide);
     setExporting(false);
     setProgress(0);
