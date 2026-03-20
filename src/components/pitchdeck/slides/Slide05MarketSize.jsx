@@ -1,66 +1,101 @@
+import { motion } from "framer-motion";
 import SlideWrapper from "../SlideWrapper";
 import GradientOrb from "../GradientOrb";
-import { motion } from "framer-motion";
-import { Globe } from "lucide-react";
+import { Globe, Target, Crosshair } from "lucide-react";
+
+const markets = [
+  {
+    icon: Globe,
+    label: "TAM",
+    sublabel: "Toplam Pazar (Dünya)",
+    value: "$XXB",
+    desc: "Toplam dünya pazar büyüklüğünüz. Kaynağınızı belirtin.",
+    color: "from-purple-500/30 to-purple-500/5",
+    border: "border-purple-500/30",
+    iconColor: "text-purple-400",
+    size: "w-56 h-56",
+  },
+  {
+    icon: Target,
+    label: "SAM",
+    sublabel: "Hedeflenen Pazar",
+    value: "$XXB",
+    desc: "Bizim hedeflediğimiz gerçekçi pazar dilimi.",
+    color: "from-blue-500/30 to-blue-500/5",
+    border: "border-blue-500/30",
+    iconColor: "text-blue-400",
+    size: "w-44 h-44",
+  },
+  {
+    icon: Crosshair,
+    label: "SOM",
+    sublabel: "İlk 3 Yıl Hedefi",
+    value: "$XXM",
+    desc: "İlk 3 yılda ulaşacağımız pazar payı.",
+    color: "from-cyan-500/30 to-cyan-500/5",
+    border: "border-cyan-500/30",
+    iconColor: "text-cyan-400",
+    size: "w-32 h-32",
+  },
+];
 
 export default function Slide05MarketSize() {
   return (
     <SlideWrapper>
-      <GradientOrb className="w-[500px] h-[500px] top-10 -right-32" color="primary" />
-      
-      <div className="max-w-5xl w-full z-10">
+      <GradientOrb className="w-[600px] h-[600px] -top-40 -right-40" color="primary" />
+
+      <div className="w-full max-w-6xl z-10">
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex items-center gap-3 mb-4"
+          className="mb-3"
         >
-          <Globe className="w-5 h-5 text-emerald-400" />
-          <span className="text-sm font-semibold tracking-widest uppercase text-emerald-400">Pazar Büyüklüğü</span>
+          <span className="text-xs font-bold tracking-widest uppercase text-purple-400/70">Pazar Büyüklüğü</span>
         </motion.div>
-        
+
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-4xl md:text-5xl font-bold leading-tight mb-16"
+          transition={{ delay: 0.1 }}
+          className="text-5xl md:text-6xl font-black mb-12 leading-tight"
         >
-          Büyük bir <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">fırsat.</span>
+          Büyük bir{" "}
+          <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+            fırsat
+          </span>{" "}
+          var
         </motion.h2>
 
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
-          {[
-            { value: "$120B", label: "TAM", desc: "Toplam Adreslenebilir Pazar", size: "text-6xl md:text-7xl" },
-            { value: "$18B", label: "SAM", desc: "Hizmet Verilebilir Pazar", size: "text-5xl md:text-6xl" },
-            { value: "$2.4B", label: "SOM", desc: "Hedeflenen Pazar", size: "text-4xl md:text-5xl" },
-          ].map((item, i) => (
+        <div className="flex items-end justify-center gap-8 mb-10">
+          {markets.map((m, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4 + i * 0.2, type: "spring", stiffness: 200 }}
-              className="text-center"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 + i * 0.15 }}
+              className={`flex flex-col items-center justify-center rounded-full border bg-gradient-to-br ${m.color} ${m.border} ${m.size} relative`}
             >
-              <div className="relative">
-                <div className={`${item.size} font-black bg-gradient-to-b from-emerald-300 to-emerald-600 bg-clip-text text-transparent`}>
-                  {item.value}
-                </div>
-                <div className="absolute -top-2 -right-2 bg-emerald-500/20 text-emerald-400 text-xs font-bold px-2 py-0.5 rounded-full border border-emerald-500/30">
-                  {item.label}
-                </div>
-              </div>
-              <p className="text-muted-foreground text-sm mt-3">{item.desc}</p>
+              <m.icon className={`w-5 h-5 ${m.iconColor} mb-1`} />
+              <div className="text-xl font-black text-white">{m.value}</div>
+              <div className={`text-xs font-bold ${m.iconColor}`}>{m.label}</div>
             </motion.div>
           ))}
         </div>
-        
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="text-center text-muted-foreground/50 text-sm mt-12"
-        >
-          Kaynak: Gartner, McKinsey Analizi 2025
-        </motion.p>
+
+        <div className="grid grid-cols-3 gap-5">
+          {markets.map((m, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 + i * 0.1 }}
+              className="text-center"
+            >
+              <div className={`text-sm font-bold ${m.iconColor} mb-1`}>{m.sublabel}</div>
+              <div className="text-xs text-muted-foreground">{m.desc}</div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </SlideWrapper>
   );
