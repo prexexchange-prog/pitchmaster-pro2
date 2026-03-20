@@ -1,99 +1,111 @@
+import { motion } from "framer-motion";
 import SlideWrapper from "../SlideWrapper";
 import GradientOrb from "../GradientOrb";
-import { motion } from "framer-motion";
-import { PieChart as PieIcon } from "lucide-react";
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import { Code2, Megaphone, Users, Settings } from "lucide-react";
 
-const funds = [
-  { name: "Ürün Geliştirme", value: 40, color: "#8b5cf6" },
-  { name: "Satış & Pazarlama", value: 30, color: "#3b82f6" },
-  { name: "Operasyonlar", value: 15, color: "#06b6d4" },
-  { name: "Genel & Yönetim", value: 15, color: "#6366f1" },
+const allocations = [
+  {
+    icon: Code2,
+    label: "Ürün & Teknoloji",
+    pct: 40,
+    desc: "Ürün geliştirme, mühendislik ekibi büyümesi ve altyapı yatırımları.",
+    color: "text-purple-400",
+    bar: "from-purple-500 to-violet-500",
+    bg: "bg-purple-500/10 border-purple-500/20",
+  },
+  {
+    icon: Megaphone,
+    label: "Satış & Pazarlama",
+    pct: 30,
+    desc: "Müşteri edinimi, marka bilinirliği ve pazar genişleme kampanyaları.",
+    color: "text-blue-400",
+    bar: "from-blue-500 to-indigo-500",
+    bg: "bg-blue-500/10 border-blue-500/20",
+  },
+  {
+    icon: Users,
+    label: "Ekip & İnsan Kaynakları",
+    pct: 20,
+    desc: "Kilit pozisyonlar için işe alım ve ekip genişlemesi.",
+    color: "text-cyan-400",
+    bar: "from-cyan-500 to-teal-500",
+    bg: "bg-cyan-500/10 border-cyan-500/20",
+  },
+  {
+    icon: Settings,
+    label: "Operasyon & Diğer",
+    pct: 10,
+    desc: "Hukuk, finans, ofis ve genel operasyonel giderler.",
+    color: "text-green-400",
+    bar: "from-green-500 to-emerald-500",
+    bg: "bg-green-500/10 border-green-500/20",
+  },
 ];
 
 export default function Slide19UseOfFunds() {
   return (
     <SlideWrapper>
-      <GradientOrb className="w-[400px] h-[400px] top-20 -left-20" color="accent" />
-      
-      <div className="max-w-5xl w-full z-10">
+      <GradientOrb className="w-[500px] h-[500px] -bottom-40 -right-20" color="primary" />
+
+      <div className="w-full max-w-6xl z-10">
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex items-center gap-3 mb-4"
+          className="mb-3"
         >
-          <PieIcon className="w-5 h-5 text-blue-400" />
-          <span className="text-sm font-semibold tracking-widest uppercase text-blue-400">Fonların Kullanımı</span>
+          <span className="text-xs font-bold tracking-widest uppercase text-purple-400/70">Fonun Kullanımı</span>
         </motion.div>
-        
+
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-4xl md:text-5xl font-bold leading-tight mb-12"
+          transition={{ delay: 0.1 }}
+          className="text-5xl md:text-6xl font-black mb-4 leading-tight"
         >
-          Yatırımı nasıl <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">kullanacağız?</span>
+          Yatırımı nasıl{" "}
+          <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+            kullanacağız?
+          </span>
         </motion.h2>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4 }}
-            className="h-72"
-          >
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={funds}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={60}
-                  outerRadius={100}
-                  paddingAngle={4}
-                  dataKey="value"
-                  strokeWidth={0}
-                >
-                  {funds.map((entry, i) => (
-                    <Cell key={i} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip
-                  contentStyle={{ background: "#1e1b2e", border: "1px solid #2d2b3d", borderRadius: "12px", fontSize: "12px" }}
-                  formatter={(value) => [`%${value}`, ""]}
-                />
-              </PieChart>
-            </ResponsiveContainer>
-          </motion.div>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="text-muted-foreground mb-10"
+        >
+          Bu yatırım bizi XX aya kadar sürdürür ve şu hedeflere ulaşmamızı sağlar.
+        </motion.p>
 
-          <div className="space-y-4">
-            {funds.map((f, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5 + i * 0.1 }}
-                className="flex items-center gap-4"
-              >
-                <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: f.color }} />
-                <div className="flex-1">
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium">{f.name}</span>
-                    <span className="font-bold text-lg">{f.value}%</span>
-                  </div>
-                  <div className="w-full bg-secondary/50 rounded-full h-1.5 mt-2">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${f.value}%` }}
-                      transition={{ delay: 0.7 + i * 0.1, duration: 0.8 }}
-                      className="h-full rounded-full"
-                      style={{ backgroundColor: f.color }}
-                    />
-                  </div>
+        <div className="flex flex-col gap-4">
+          {allocations.map((a, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.25 + i * 0.1 }}
+              className={`flex items-center gap-5 rounded-2xl border ${a.bg} p-5`}
+            >
+              <div className="p-3 rounded-xl bg-secondary/40 shrink-0">
+                <a.icon className={`w-6 h-6 ${a.color}`} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-bold text-white/90">{a.label}</span>
+                  <span className={`text-2xl font-black ${a.color}`}>{a.pct}%</span>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+                <div className="h-2 bg-secondary/40 rounded-full overflow-hidden mb-2">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${a.pct}%` }}
+                    transition={{ delay: 0.5 + i * 0.1, duration: 0.8 }}
+                    className={`h-full rounded-full bg-gradient-to-r ${a.bar}`}
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground">{a.desc}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </SlideWrapper>
